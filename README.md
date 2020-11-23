@@ -1,4 +1,4 @@
-# car Game
+# CAR GAME
 
 ## DESCRIPTION
 This is a quiz game in progress. 
