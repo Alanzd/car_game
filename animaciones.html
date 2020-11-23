@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery-3.5.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".coche").hide();
+            $("#start").click(function(e){
+                e.preventDefault();
+                var nombre = $('#entrada').val();
+                if(nombre == ""){
+                    alert("introduce un nombre válido")
+                }else{
+                $("#letrero_p").text("Enhorabuena "+ nombre)
+                $("#form").hide();
+                $(".coche").fadeIn(200);
+                }
+            });
+            
+            $(".letrero").hide();
+            $("#imagen").click(function (e) { 
+                $(this).animate( 
+                    { marginLeft:"+=210px"} 
+                ,1000);
+                var x = e.pageX
+                if(x>="800"){
+                    $(".letrero").fadeIn(300);
+                    var boton = '<input type="button" value="Empezar otra vez" id="boton">';
+                    $(".letrero").append(boton);
+                    $(this).animate(
+                        { marginLeft: "50px"}
+                        ,2000);
+                    $("#boton").click(function () { 
+                        location.reload();
+                    });
+                    if(x>"970"){
+                        location.reload();
+                    }
+                  
+                } 
+            });
+        });
+    </script>
+    <style>
+        .coche{
+            width: 100%;
+            height: 100%;
+        }
+        .contenedor{
+            background: url("./imgs/terminar.png") no-repeat;
+            margin-left: 952px;
+            height: 200px;
+            margin-top: 20px;
+        }
+    
+        .letrero{
+            font-size: 48px;
+            color: blueviolet;
+            width: 400px;
+            height: 400px;
+        }
+        #imagen{
+            position: absolute;
+            margin-top: -150px ;
+        }
+        #road{
+            width: 100px;
+            margin-top: -80px;
+            transform: rotate(90deg);
+          
+        }
+
+        .road{
+            width: 1000px;
+            height:30px;
+            margin-top: -100px;
+            background-image: url("./imgs/carretera.png");
+            background-repeat: repeat;
+        }
+    </style>
+</head>
+<body>
+    <form id="form">
+        <label for="entrada">¿Como te llamas?</label>
+        <input type="text" name="entrada" id="entrada">
+        <button id="start">Empieza la carrera!</button>
+
+    </form>
+
+    <div class="coche">
+        <div class="contenedor">
+
+        </div>
+        <img src="./imgs/coche.png " height="100px" alt="" id="imagen" >
+        <div class="road">
+    
+        </div>
+        <div class="letrero">
+            <p id="letrero_p"> </p>
+            
+        </div>
+
+    </div>
+
+        
+</body>
+</html>
